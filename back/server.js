@@ -8,7 +8,7 @@ const port = 3000;
 
 // Configurer le middleware
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../front')));
+app.use(express.static(path.join(__dirname, 'public')));  // Mise à jour du chemin
 
 // Configurer la base de données
 const db = new sqlite3.Database(':memory:');
@@ -19,7 +19,7 @@ db.serialize(() => {
 
 // Route pour le front-end
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../front/index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));  // Mise à jour du chemin
 });
 
 // API pour recevoir les données
