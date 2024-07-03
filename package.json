@@ -1,0 +1,14 @@
+{
+  "name": "simple-site",
+  "version": "1.0.0",
+  "main": "back/server.js",
+  "scripts": {
+    "start": "node back/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0",
+    "sqlite3": "^5.0.2"
+  }
+}
+
