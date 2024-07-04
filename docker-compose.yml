@@ -3,6 +3,7 @@ version: '3.8'
 services:
   frontend:
     image: docker_frontend:latest
+    build: ./front
     ports:
       - "80:80"
     networks:
