@@ -7,7 +7,8 @@ RUN npm install
 
 COPY . .
 
+COPY init_db.sql /app/init_db.sql
+
 EXPOSE 3000
 
 CMD ["node", "server.js"]
-

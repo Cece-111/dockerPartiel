@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Site</title>
+    <title>Site docker</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,12 +22,19 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Simple Site</h1>
+        <h1>Voici un site pour docker</h1>
         <form id="dataForm">
-            <input type="text" id="inputData" placeholder="Enter some data" required>
-            <button type="submit">Submit</button>
+            <input type="text" id="inputData" placeholder="Entrez de la donnée" required>
+            <button type="submit">Envoyer</button>
         </form>
-        <div id="response"></div>
+        <div id="postResponse"></div>
+    </div>
+    <div class="container">
+        <h1>Récupérer la donnée</h1>
+        <form id="getDataForm">
+            <button type="submit">Rafraîchir</button>
+        </form>
+        <div id="getResponse"></div>
     </div>
     <script>
         document.getElementById('dataForm').addEventListener('submit', function(event) {
@@ -42,7 +49,22 @@
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById('response').innerText = data.message;
+                document.getElementById('postResponse').innerText = data.message;
+            });
+        });
+
+        document.getElementById('getDataForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            fetch('/api/data', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                var responseData = data.map(item => `ID: ${item.id}, Data: ${item.data}, Created At: ${item.created_at}`).join('<br>');
+                document.getElementById('getResponse').innerHTML = responseData;
             });
         });
     </script>
